@@ -1,0 +1,86 @@
+<html ng-app="app">
+
+<head>
+	<title> MyApp</title>
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="libs/jquery-1.10.2.min.js"></script>
+    <script src="libs/jquery-ui.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-ui.min.js"></script>
+	<script src="libs/xeditable.js"></script>
+	<script src="app.js"></script>
+	<script src="controller.js"></script>
+
+
+</head>
+
+<body ng-controller='Ctrl' >
+	<nav class="navbar navbar-default ">
+		<div class="container">
+			<div class="navbar-header">
+				<b> Prons and Cons application</b>
+
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<span editable-text="app.subject" e-form="textBtnForm" buttons="no">
+			
+			<p class="title">{{app.subject}}
+			<img src="img/Pencil.png" ng-click="textBtnForm.$show()">
+			 </p>
+
+		</span>
+
+
+		<div class="table-responsive">
+			<table border="2" class="table table-striped">
+				<tr>
+					<th>Prons</th>
+					<th>Cons</th>
+
+				</tr>
+				<tr>
+					<td>
+						<span editable-text="app.title.prons" e-form="prons" buttons="no">
+
+						<p class="title">{{app.title.prons}}
+						<img src="img/Pencil.png" ng-click="prons.$show()"></p>
+                      <input type="button" class="btn btn-link pull-right" ng-click="addItem()" value="Add list item">
+					   </span>
+
+					</td>
+					<td>
+						<span editable-text="app.title.cons" e-form="cons" buttons="no">
+
+						<p class="title">{{app.title.cons}}
+						<img src="img/Pencil.png" ng-click="cons.$show()"></p>
+  
+					</span>
+					</td>
+				</tr>
+				   <tbody ui-sortable >
+				<tr ng-repeat="task in listItem track by $index">
+					<td>
+						
+						{{$index+1}}
+						<textarea data-ng-hide="hide" ng-keyup="autoExpand($event)" class="form-control" placeholder="Enter Item "></textarea>
+					
+					</td>
+					<td>
+						{{$index+1}}
+						<textarea data-ng-hide="hide" ng-keyup="autoExpand($event)" class="form-control" placeholder="Enter Item "></textarea>
+						
+					</td>
+
+				</tr>
+                </tbody>
+				
+			</table>
+				
+		</div>
+	</div>
+</body>
+
+</html>
