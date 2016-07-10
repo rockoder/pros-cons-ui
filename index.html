@@ -1,7 +1,8 @@
 <html ng-app="app">
 
 <head>
-	<title> MyApp</title>
+	   
+	
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="libs/jquery-1.10.2.min.js"></script>
@@ -27,60 +28,70 @@
 		
 		<a class="title" ng-click="ShowHideSubject()" ng-hide="IsVisibleSubject">{{app.subject}}</a>
 		<label ng-show="IsVisibleSubject">Subject:-{{subject}}</label>
-		<textarea ng-show="IsVisibleSubject" ng-enter="hideSubjectTextArea()" ng-hide="!IsVisibleSubjectTextArea"  onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" ng-model="subject" class="form-control"></textarea>
+		<textarea ng-if="IsVisibleSubject" ng-enter="hideSubjectTextArea(subject)" ng-hide="IsVisibleSubjectTextArea"  onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" ng-model="subject" class="form-control "></textarea>
 		
 
 		<br/>
+		
 		<div class="table ">
-			<table border="2" class="table">
-				<tr>
-					<th>Prons</th>
-					<th>Cons</th>
-
-				</tr>
-				<tr>
-					<td>
+			
+			
+			<!--new UI-->
+			<table class="table" border="2" id="sort_list">
+				<thead>
+					<tr>
+						<th>Serial Number</th>
+						<th>Prons</th>
+						<th>Cons</th>
+					</tr>
+				</thead>
+				
+					<tr>
+						<td style="width:150px;" ></td>
+						<td style='width: 150px;'>
 
 						<a class="title" ng-click="ShowHidePronsTitle()" ng-hide="IsVisiblePronsTitle">{{app.title.prons}}</a>
-						<label ng-show="IsVisiblePronsTitle">Pron's Title:-{{title}}</label>
-						<textarea ng-show="IsVisiblePronsTitle" ng-enter="hidePronsTextArea()" ng-hide="!IsVisiblePronsTextArea" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" class="form-control" ng-model="title"></textarea>
+						<label ng-if="IsVisiblePronsTitle">Pron's Title:-{{title}}</label>
+						<textarea ng-if='IsVisiblePronsTitle' ng-enter="hidePronsTextArea(title)" ng-hide="IsVisiblePronsTextArea" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" class="form-control" ng-model="title"  autofocus></textarea>
 					
-						<input type="button" ng-hide="count==true" class="btn btn-link pull-right" ng-click="addItem()" value="Add list item">
-
+				
 
 					</td>
-					<td>
+					<td style='width: 150px;'>
 						<a class="title" ng-click="ShowHideConsTitle()" ng-hide="IsVisibleConsTitle">{{app.title.cons}}</a>
 						<label ng-show="IsVisibleConsTitle">con's Title:-{{constitle}}</label>
-						<textarea ng-show="IsVisibleConsTitle" ng-enter="hideConsTextArea()" ng-hide="!IsVisibleConsTextArea" ng-model="constitle" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" class="form-control"></textarea>
-						<input type="button" ng-hide="count==true" class="btn btn-link pull-right" ng-click="addItem()" value="Add list item">
-					</td>
-				</tr>
-				<tbody ui-sortable >
-				
-					<tr ng-repeat="task in listItem track by $index">
+						<textarea ng-if="IsVisibleConsTitle" ng-trim="false"  ng-hide="IsVisibleConsTextArea" ng-model="constitle" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" class="form-control" ng-enter="hideConsTextArea(constitle)"> </textarea>
 						
-						<td>
-							
-							{{task}}
-							<textarea data-ng-hide="hide"  ng-trim="false" ng-enter="addItem()" ng-change="change(remove)" ng-model="remove" id="text" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" class="form-control" placeholder="Enter Item "></textarea>
-
-
-						</td>
-						<td>
-								{{task}}
-								<textarea data-ng-hide="hide" ng-trim="false" id="text" ng-enter="addItem()" ng-change="change(remove1)" ng-model="remove1"  onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" class="form-control" placeholder="Enter Item "></textarea>
-							
-
-						</td>
-
+					
+					</td>
+						
 					</tr>
+				<tbody>
+					<tr ng-repeat="task in listItem track by $index">
+						<td class='priority'>{{task}}</td>
+							<td>
+							
+						
+							<textarea data-ng-hide="hide"  ng-trim="false" ng-enter="addItem()" ng-change="change(field)" ng-model="field.remove" id="text" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';"  placeholder="Enter Item "></textarea>
+						
+						</td>
+						<td>
+								
+								<textarea data-ng-hide="hide" ng-trim="false" id="text" ng-enter="addItem()" ng-change="change(field)" ng-model="field.remove1"  onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';"  placeholder="Enter Item "></textarea>
+
+						</td>
+						
+					</tr>
+				
+
 				</tbody>
-
+				
 			</table>
-
+			<!--<button ng-show="anotherTitle" class="pull-right btn btn-primary" type="button">Add another title</button>-->
+			<!--New ui ends here-->
 		</div>
-
+	
+ 
 	</div>
 </body>
 

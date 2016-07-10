@@ -6,10 +6,15 @@ div[ng-app]
 	
 }
 textarea {
-  
-	overflow: hidden;
-   resize: none;
+    border: none;
+   overflow: hidden;
+    outline: none;
+	resize: none;
+	 width: 600px;
+
 }
+
+
 .navbar-center
 {
    position: absolute;
@@ -26,3 +31,10 @@ a{
 	
 	
 }
+#map {
+    height:420px;
+    width:600px;
+}
+.ui-sortable tr {
+    cursor:pointer;
+}    
