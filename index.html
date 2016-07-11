@@ -11,7 +11,7 @@
 	<script src="libs/angular-ui.min.js"></script>
 	<script src="app.js"></script>
 	<script src="controller.js"></script>
-
+ 
 
 </head>
 
@@ -38,23 +38,19 @@
 			
 			<!--new UI-->
 			<table class="table" border="2" id="sort_list">
-				<thead>
-					<tr>
-						<th>Serial Number</th>
-						<th>Prons</th>
-						<th>Cons</th>
-					</tr>
-				</thead>
+				
 				
 					<tr>
-						<td style="width:150px;" ></td>
+						<td style="width:10px;" ></td>
 						<td style='width: 150px;'>
-
+ 
 						<a class="title" ng-click="ShowHidePronsTitle()" ng-hide="IsVisiblePronsTitle">{{app.title.prons}}</a>
 						<label ng-if="IsVisiblePronsTitle">Pron's Title:-{{title}}</label>
-						<textarea ng-if='IsVisiblePronsTitle' ng-enter="hidePronsTextArea(title)" ng-hide="IsVisiblePronsTextArea" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" class="form-control" ng-model="title"  autofocus></textarea>
+						<textarea id="area" ng-if='IsVisiblePronsTitle' ng-enter="hidePronsTextArea(title)" ng-hide="IsVisiblePronsTextArea" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';" class="form-control" ng-model="title"  ></textarea>
 					
 				
+		
+		
 
 					</td>
 					<td style='width: 150px;'>
@@ -72,7 +68,7 @@
 							<td>
 							
 						
-							<textarea data-ng-hide="hide"  ng-trim="false" ng-enter="addItem()" ng-change="change(field)" ng-model="field.remove" id="text" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';"  placeholder="Enter Item "></textarea>
+							<textarea  id="mytext" data-ng-hide="hide"  ng-trim="false" ng-enter="addItem()" ng-change="change(field)" ng-model="field.remove" id="text" onkeyup="this.style.height='24px'; this.style.height = this.scrollHeight + 12 + 'px';"  placeholder="Enter Item " focus-me=true></textarea>
 						
 						</td>
 						<td>
@@ -90,8 +86,7 @@
 			<!--<button ng-show="anotherTitle" class="pull-right btn btn-primary" type="button">Add another title</button>-->
 			<!--New ui ends here-->
 		</div>
-	
- 
+
 	</div>
 </body>
 

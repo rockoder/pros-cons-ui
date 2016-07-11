@@ -11,6 +11,7 @@ app.controller('Ctrl', function($scope,$rootScope) {
 	 $scope.IsVisiblePronsTextArea = false;
 	 $scope.IsVisibleConsTextArea = false;
 	$scope.anotherTitle=false;
+	
 		  $scope.app = {
 			subject: 'Enter subject here',
 			  title:{prons:'Enter title here',cons:'Enter title here'
@@ -52,6 +53,7 @@ app.controller('Ctrl', function($scope,$rootScope) {
                 $scope.IsVisiblePronsTextArea = $scope.IsVisiblePronsTextArea ? false : true;
             }
 			  $scope.hideConsTextArea = function (constitle) {
+				   
 				  $scope.anotherTitle=true;
                 $scope.constitle=constitle;
                 $scope.IsVisibleConsTextArea = $scope.IsVisibleConsTextArea ? false : true;
@@ -79,21 +81,12 @@ app.controller('Ctrl', function($scope,$rootScope) {
 
 			$(document).ready(function() {
     //Helper function to keep table row from collapsing when being sorted
-    var fixHelperModified = function(e, tr) {
-        var $originals = tr.children();
-        var $helper = tr.clone();
-        $helper.children().each(function(index)
-        {
-          $(this).width($originals.eq(index).width())
-        });
-        return $helper;
-    };
+
 
     //Make  table sortable
     $("#sort_list tbody").sortable({
-        helper: fixHelperModified,
         stop: function(event,ui) {renumber_table('#sort_list')}
-    }).disableSelection();
+    })
 
   
 });
@@ -104,8 +97,9 @@ function renumber_table(tableID) {
         count = $(this).parent().children().index($(this)) + 1;
         $(this).find('.priority').html(count);
     });
-}			
-			
+}		
+	
+		
             });
 
 			app.directive('ngEnter', function () {
@@ -121,3 +115,22 @@ function renumber_table(tableID) {
 					});
 				};
 			});
+
+				app.directive('focusMe', function($timeout, $parse) {
+				  return {
+					link: function(scope, element, attrs) {
+					  var model = $parse(attrs.focusMe);
+					  scope.$watch(model, function(value) {
+						if(value === true) { 
+						  $timeout(function() {
+							element[0].focus(); 
+						  });
+						}
+					  });
+					  element.bind('blur', function() {
+						
+						scope.$apply(model.assign(scope, false));
+					  })
+					}
+				  };
+				});
